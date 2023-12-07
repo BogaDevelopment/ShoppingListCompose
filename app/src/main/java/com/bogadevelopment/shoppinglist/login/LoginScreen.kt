@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.LocalTextSelectionColors
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -131,62 +133,76 @@ fun UserIcon(modifier: Modifier){
 
 @Composable
 fun Email(email: String, onTextChanged: (String) -> Unit) {
-    OutlinedTextField(
-        value = email,
-        onValueChange = { onTextChanged(it) },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 15.dp),
-        label = { Text(text = "Email", color = Text_Color) },
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-        shape = RoundedCornerShape(20.dp),
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = Accent_Color,
-            cursorColor = Text_Color,
-            unfocusedBorderColor = Text_Color
-        )
 
+    val selectColors  = TextSelectionColors(
+        handleColor = Accent_Color,
+        backgroundColor = Accent_Color_Transparent
     )
+
+    CompositionLocalProvider(LocalTextSelectionColors provides selectColors) {
+        OutlinedTextField(
+            value = email,
+            onValueChange = { onTextChanged(it) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 15.dp),
+            label = { Text(text = "Email", color = Text_Color) },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            shape = RoundedCornerShape(20.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Accent_Color,
+                cursorColor = Text_Color,
+                unfocusedBorderColor = Text_Color
+            )
+
+        )
+    }
 }
 
 @Composable
 fun Password(password: String, onTextChanged: (String) -> Unit) {
 
     var passwordVisibility by remember { mutableStateOf(false) }
-
-    OutlinedTextField(
-        value = password,
-        onValueChange = { onTextChanged(it) },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 15.dp),
-        label = { Text(text = "Password", color = Text_Color) },
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        shape = RoundedCornerShape(20.dp),
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = Accent_Color,
-            cursorColor = Text_Color,
-            unfocusedBorderColor = Text_Color
-        ),
-        trailingIcon = {                    // Change the Icon if Password is visible
-            val image =
-                if(passwordVisibility){
-                    Icons.Filled.VisibilityOff
-                }else{
-                    Icons.Filled.Visibility
-                }
-            IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
-                Icon(imageVector = image, contentDescription = "Show Password")
-            }
-        },
-        visualTransformation = if(passwordVisibility){      // Logic to hide the password
-            VisualTransformation.None
-        }else{
-            PasswordVisualTransformation()
-        }
+    val selectColors  = TextSelectionColors(
+        handleColor = Accent_Color,
+        backgroundColor = Accent_Color_Transparent
     )
+
+    CompositionLocalProvider(LocalTextSelectionColors provides selectColors) {
+        OutlinedTextField(
+            value = password,
+            onValueChange = { onTextChanged(it) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 15.dp),
+            label = { Text(text = "Password", color = Text_Color) },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            shape = RoundedCornerShape(20.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Accent_Color,
+                cursorColor = Text_Color,
+                unfocusedBorderColor = Text_Color
+            ),
+            trailingIcon = {                    // Change the Icon if Password is visible
+                val image =
+                    if (passwordVisibility) {
+                        Icons.Filled.VisibilityOff
+                    } else {
+                        Icons.Filled.Visibility
+                    }
+                IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
+                    Icon(imageVector = image, contentDescription = "Show Password")
+                }
+            },
+            visualTransformation = if (passwordVisibility) {      // Logic to hide the password
+                VisualTransformation.None
+            } else {
+                PasswordVisualTransformation()
+            }
+        )
+    }
 }
 
 @Composable
