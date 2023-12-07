@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.bogadevelopment.shoppinglist.login.LoginViewModel
+import com.bogadevelopment.shoppinglist.register.RegisterScreen
+import com.bogadevelopment.shoppinglist.register.RegisterViewModel
 import com.bogadevelopment.shoppinglist.ui.theme.ShoppingListTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,6 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    //RegisterScreen(RegisterViewModel())
                     LoginScreen(LoginViewModel())
                 }
             }
@@ -30,15 +33,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
+/*
 @Composable
 fun DefaultPreview() {
     ShoppingListTheme {
         LoginScreen(LoginViewModel())
     }
 }
+ */

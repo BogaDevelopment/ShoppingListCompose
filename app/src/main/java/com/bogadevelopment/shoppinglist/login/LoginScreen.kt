@@ -10,7 +10,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.saveable.rememberSaveable
+
 
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,8 +36,8 @@ fun LoginScreen( loginViewModel: LoginViewModel ) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Gradient_background_start,
-                        Gradient_background_end
+                        Gradient_background_dark,
+                        Gradient_background_light
                     )
                 )
             )
@@ -51,7 +51,6 @@ fun LoginScreen( loginViewModel: LoginViewModel ) {
             .align(Alignment.BottomCenter)
             .padding(vertical = 12.dp))
     }
-
 }
 
 @Composable
@@ -84,8 +83,8 @@ fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Gradient_card_start,
-                        Gradient_card_end
+                        Gradient_background_light,
+                        Gradient_background_dark
                     )
                 )
             ),
