@@ -12,22 +12,21 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.bogadevelopment.shoppinglist.Routes
 import com.bogadevelopment.shoppinglist.ui.theme.*
 
 
 @Composable
-fun RegisterScreen(registerViewModel: RegisterViewModel){
+fun RegisterScreen(registerViewModel: RegisterViewModel, navigationController: NavHostController){
     Box(
         Modifier
             .fillMaxSize()
@@ -46,7 +45,7 @@ fun RegisterScreen(registerViewModel: RegisterViewModel){
                 .align(Alignment.TopCenter)
                 .padding(top = 80.dp)
         )
-        Body(Modifier.padding(top = 230.dp),registerViewModel)
+        Body(Modifier.padding(top = 230.dp),registerViewModel, navigationController)
     }
 }
 
@@ -66,7 +65,11 @@ fun Tittle(modifier : Modifier){
 }
 
 @Composable
-fun Body(modifier: Modifier, registerViewModel: RegisterViewModel){
+fun Body(
+    modifier: Modifier,
+    registerViewModel: RegisterViewModel,
+    navigationController: NavHostController
+){
     val name : String by registerViewModel.name.observeAsState(initial = "")  // It's subscribed to ViewModel
     val lastName : String by registerViewModel.lastName.observeAsState(initial = "")
     val email : String by registerViewModel.email.observeAsState(initial = "")
@@ -133,7 +136,8 @@ fun Body(modifier: Modifier, registerViewModel: RegisterViewModel){
             Modifier
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth(0.35f)
-                .fillMaxHeight(0.3f)
+                .fillMaxHeight(0.3f),
+            navigationController
         )
 
     }
@@ -313,9 +317,13 @@ fun RepeatPassword(password: String, onTextChanged: (String) -> Unit ){
 }
 
 @Composable
-fun RegisterButton(registerEnable: Boolean, modifier: Modifier){
+fun RegisterButton(
+    registerEnable: Boolean,
+    modifier: Modifier,
+    navigationController: NavHostController
+){
     OutlinedButton(
-        onClick = { /*TODO*/ },
+        onClick = { navigationController.navigate(Routes.LoginScreen.route) },
         enabled = registerEnable,
         shape = RoundedCornerShape(20.dp),
         modifier = modifier,

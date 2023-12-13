@@ -1,6 +1,7 @@
 package com.bogadevelopment.shoppinglist
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -26,12 +27,13 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.bogadevelopment.shoppinglist.login.LoginViewModel
 import com.bogadevelopment.shoppinglist.ui.theme.*
 
 
 @Composable
-fun LoginScreen( loginViewModel: LoginViewModel ) {
+fun LoginScreen(loginViewModel: LoginViewModel, navigationController: NavHostController) {
     Box(
         Modifier
             .fillMaxSize()
@@ -48,7 +50,7 @@ fun LoginScreen( loginViewModel: LoginViewModel ) {
             Modifier
                 .align(Alignment.TopCenter)
                 .padding(top = 80.dp))
-        Body(Modifier.align(Alignment.Center), loginViewModel)
+        Body(Modifier.align(Alignment.Center), loginViewModel, navigationController)
         WhaterMark(modifier = Modifier
             .align(Alignment.BottomCenter)
             .padding(vertical = 12.dp))
@@ -71,7 +73,11 @@ fun Tittle(modifier: Modifier) {
 }
 
 @Composable
-fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
+fun Body(
+    modifier: Modifier,
+    loginViewModel: LoginViewModel,
+    navigationController: NavHostController
+) {
     val email : String by loginViewModel.email.observeAsState(initial = "")  // It's subscribed to ViewModel
     val password : String by loginViewModel.password.observeAsState(initial = "")
     val isLoginEnable : Boolean by loginViewModel.isLoginEnable.observeAsState(initial = false)
@@ -116,7 +122,7 @@ fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
                     .fillMaxHeight(0.08f)
             )
             Spacer(modifier = Modifier.size(40.dp))
-            Register(modifier = Modifier.align(Alignment.CenterHorizontally))
+            Register(modifier = Modifier.align(Alignment.CenterHorizontally), navigationController)
             Spacer(modifier = Modifier.size(15.dp))
         }
     }
@@ -238,12 +244,16 @@ fun ForgotPassword(modifier: Modifier) {
 }
 
 @Composable
-fun Register(modifier: Modifier){
+fun Register(modifier: Modifier, navigationController: NavHostController){
     Row(
         modifier = modifier
     ){
         Text(text = "Don't have a account? ", fontSize = 16.sp, color = Text_Color)
-        Text(text = "Register", fontSize = 16.sp, color = Accent_Color)
+        Text(
+            text = "Register",
+            fontSize = 16.sp,
+            color = Accent_Color,
+            modifier = Modifier.clickable { navigationController.navigate(Routes.RegisterScreen.route) })
     }
 }
 

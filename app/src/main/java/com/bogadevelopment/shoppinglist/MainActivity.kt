@@ -6,10 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.bogadevelopment.shoppinglist.login.LoginViewModel
 import com.bogadevelopment.shoppinglist.register.RegisterScreen
 import com.bogadevelopment.shoppinglist.register.RegisterViewModel
@@ -25,19 +25,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    //RegisterScreen(RegisterViewModel())
-                    LoginScreen(LoginViewModel())
+                    val navigationController = rememberNavController()
+                    NavHost(navController = navigationController, startDestination = Routes.LoginScreen.route){
+                        composable(Routes.LoginScreen.route){ LoginScreen(loginViewModel = LoginViewModel(), navigationController)}
+                        composable(Routes.RegisterScreen.route){ RegisterScreen(registerViewModel = RegisterViewModel(),navigationController)}
+                    }
                 }
             }
         }
     }
 }
-
-/*
-@Composable
-fun DefaultPreview() {
-    ShoppingListTheme {
-        LoginScreen(LoginViewModel())
-    }
-}
- */
