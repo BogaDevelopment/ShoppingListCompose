@@ -1,4 +1,4 @@
-package com.bogadevelopment.shoppinglist
+package com.bogadevelopment.shoppinglist.login.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,7 +28,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.bogadevelopment.shoppinglist.login.LoginViewModel
+import com.bogadevelopment.shoppinglist.R
+import com.bogadevelopment.shoppinglist.Routes
 import com.bogadevelopment.shoppinglist.ui.theme.*
 
 
@@ -115,11 +116,14 @@ fun Body(
             ForgotPassword(Modifier.align(Alignment.End))
             Spacer(modifier = Modifier.size(20.dp))
             LoginButton(
+                loginViewModel,
                 isLoginEnable,
                 Modifier
                     .align(Alignment.CenterHorizontally)
                     .fillMaxWidth(0.35f)
-                    .fillMaxHeight(0.08f)
+                    .fillMaxHeight(0.08f),
+                email,
+                password
             )
             Spacer(modifier = Modifier.size(40.dp))
             Register(modifier = Modifier.align(Alignment.CenterHorizontally), navigationController)
@@ -212,9 +216,9 @@ fun Password(password: String, onTextChanged: (String) -> Unit) {
 }
 
 @Composable
-fun LoginButton(loginEnable: Boolean, modifier: Modifier) {
+fun LoginButton(loginViewModel: LoginViewModel, loginEnable: Boolean, modifier: Modifier, email: String, password: String) {
     OutlinedButton(
-        onClick = { /*TODO*/ },
+        onClick = { loginViewModel.signInWithEmailAndPassword(email, password) },
         enabled = loginEnable,
         shape = RoundedCornerShape(20.dp),
         modifier = modifier,
@@ -263,7 +267,7 @@ fun WhaterMark(modifier: Modifier){
     Text(
         modifier = modifier,
         text = "By BogaDevelopment",
-        color = com.bogadevelopment.shoppinglist.ui.theme.WhaterMark
+        color = WhaterMark
     )
 }
 

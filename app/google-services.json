@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "727798697904",
+    "project_id": "shoppinglistcompose",
+    "storage_bucket": "shoppinglistcompose.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727798697904:android:083665db15e65fe24f1075",
+        "android_client_info": {
+          "package_name": "com.bogadevelopment.shoppinglist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvZrbCuNBA5VJu-clM2LuBiocJ1mEhPa8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

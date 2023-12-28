@@ -10,9 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.bogadevelopment.shoppinglist.login.LoginViewModel
-import com.bogadevelopment.shoppinglist.register.RegisterScreen
-import com.bogadevelopment.shoppinglist.register.RegisterViewModel
+import com.bogadevelopment.shoppinglist.login.ui.LoginScreen
+import com.bogadevelopment.shoppinglist.login.ui.LoginViewModel
+import com.bogadevelopment.shoppinglist.register.ui.RegisterScreen
+import com.bogadevelopment.shoppinglist.register.ui.RegisterViewModel
 import com.bogadevelopment.shoppinglist.ui.theme.ShoppingListTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,8 +28,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navigationController = rememberNavController()
                     NavHost(navController = navigationController, startDestination = Routes.LoginScreen.route){
-                        composable(Routes.LoginScreen.route){ LoginScreen(loginViewModel = LoginViewModel(), navigationController)}
-                        composable(Routes.RegisterScreen.route){ RegisterScreen(registerViewModel = RegisterViewModel(),navigationController)}
+                        composable(Routes.LoginScreen.route){ LoginScreen(loginViewModel = LoginViewModel(), navigationController) }
+                        composable(Routes.RegisterScreen.route){ RegisterScreen(registerViewModel = RegisterViewModel(),navigationController) }
                     }
                 }
             }

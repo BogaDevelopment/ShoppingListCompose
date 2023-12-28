@@ -1,4 +1,4 @@
-package com.bogadevelopment.shoppinglist.register
+package com.bogadevelopment.shoppinglist.register.ui
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData

@@ -1,4 +1,4 @@
-package com.bogadevelopment.shoppinglist.register
+package com.bogadevelopment.shoppinglist.register.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
