@@ -17,7 +17,6 @@ class LoginViewModel : ViewModel() {
 
 
     private val auth: FirebaseAuth = Firebase.auth
-    val _loading = MutableLiveData(false)
 
     private val _email = MutableLiveData<String>()      // It's allow to modify only from this class
     val email: LiveData<String> = _email

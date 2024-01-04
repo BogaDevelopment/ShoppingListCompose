@@ -137,7 +137,10 @@ fun Body(
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth(0.35f)
                 .fillMaxHeight(0.3f),
-            navigationController
+            navigationController,
+            registerViewModel,
+            email,
+            password
         )
 
     }
@@ -320,10 +323,15 @@ fun RepeatPassword(password: String, onTextChanged: (String) -> Unit ){
 fun RegisterButton(
     registerEnable: Boolean,
     modifier: Modifier,
-    navigationController: NavHostController
+    navigationController: NavHostController,
+    registerViewModel: RegisterViewModel,
+    email: String,
+    password: String
 ){
     OutlinedButton(
-        onClick = { navigationController.navigate(Routes.LoginScreen.route) },
+        onClick = { registerViewModel.createUsersWithEmailAndPassword(email, password
+        ) { navigationController.navigate(Routes.LoginScreen.route) }
+        },
         enabled = registerEnable,
         shape = RoundedCornerShape(20.dp),
         modifier = modifier,

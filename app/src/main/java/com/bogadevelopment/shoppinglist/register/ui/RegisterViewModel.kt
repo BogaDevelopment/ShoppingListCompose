@@ -1,10 +1,17 @@
 package com.bogadevelopment.shoppinglist.register.ui
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class RegisterViewModel {
+
+    private val auth: FirebaseAuth = Firebase.auth
+    val _loading = MutableLiveData(false)
 
     private val _name = MutableLiveData<String>()
     val name : LiveData<String> = _name
@@ -37,6 +44,19 @@ class RegisterViewModel {
     fun enableRegister(email: String, password: String, repeatPassword: String) =
         Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length >= 8 && password == repeatPassword
 
-
+    fun createUsersWithEmailAndPassword(email: String, password: String, loginView: () -> Unit){
+        if(_loading.value == false ){
+            _loading.value = true
+            auth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener{ task ->
+                    if(task.isSuccessful){
+                        loginView()
+                    }else{
+                        Log.d("Register", "createUsersWithEmailAndPassword: ${task.result}")
+                    }
+                    _loading.value = false
+                }
+        }
+    }
 
 }
