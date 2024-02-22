@@ -6,16 +6,25 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
+
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = Primary,
+    primaryVariant = Secondary,
+    secondary = Accent_Color,
+    onPrimary = OnPrimary,
+    onSecondary = OnSecondary,
+    background = Background_Transparent,
+    onBackground = OnBackground
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = Primary,
+    primaryVariant = Secondary,
+    secondary = Accent_Color,
+    onPrimary = OnPrimary,
+    onSecondary = OnSecondary,
+    background = Background_Transparent,
+    onBackground = OnBackground
 
     /* Other default colors to override
     background = Color.White,
@@ -33,6 +42,7 @@ fun ShoppingListTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Comp
         DarkColorPalette
     } else {
         LightColorPalette
+
     }
 
     MaterialTheme(
@@ -42,3 +52,4 @@ fun ShoppingListTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Comp
         content = content
     )
 }
+

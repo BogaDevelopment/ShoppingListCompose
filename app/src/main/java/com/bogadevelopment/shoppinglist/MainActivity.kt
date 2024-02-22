@@ -15,12 +15,20 @@ import com.bogadevelopment.shoppinglist.login.ui.LoginViewModel
 import com.bogadevelopment.shoppinglist.register.ui.RegisterScreen
 import com.bogadevelopment.shoppinglist.register.ui.RegisterViewModel
 import com.bogadevelopment.shoppinglist.ui.theme.ShoppingListTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ShoppingListTheme {
+            ShoppingListTheme() {
+                // Change status bar color
+                val systemUiController = rememberSystemUiController()
+                systemUiController.setStatusBarColor(
+                    color = MaterialTheme.colors.primaryVariant,
+                    darkIcons = false
+                )
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

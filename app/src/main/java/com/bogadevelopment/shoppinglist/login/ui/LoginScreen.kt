@@ -41,8 +41,8 @@ fun LoginScreen(loginViewModel: LoginViewModel, navigationController: NavHostCon
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Gradient_background_dark,
-                        Gradient_background_light
+                        MaterialTheme.colors.primaryVariant,
+                        MaterialTheme.colors.primary
                     )
                 )
             )
@@ -69,7 +69,7 @@ fun Tittle(modifier: Modifier) {
         text = "WELCOME",
         fontSize = 42.sp,
         modifier = modifier,
-        color = Text_Color
+        color = MaterialTheme.colors.onPrimary
     )
 }
 
@@ -92,8 +92,8 @@ fun Body(
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Gradient_background_light,
-                        Gradient_background_dark
+                        MaterialTheme.colors.primary,
+                        MaterialTheme.colors.primaryVariant
                     )
                 )
             ),
@@ -145,8 +145,8 @@ fun UserIcon(modifier: Modifier){
 fun Email(email: String, onTextChanged: (String) -> Unit) {
 
     val selectColors  = TextSelectionColors(
-        handleColor = Accent_Color,
-        backgroundColor = Accent_Color_Transparent
+        handleColor = MaterialTheme.colors.secondary,
+        backgroundColor = MaterialTheme.colors.background
     )
 
     CompositionLocalProvider(LocalTextSelectionColors provides selectColors) {
@@ -156,14 +156,14 @@ fun Email(email: String, onTextChanged: (String) -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 15.dp),
-            label = { Text(text = "Email", color = Text_Color) },
+            label = { Text(text = "Email", color = MaterialTheme.colors.onPrimary) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Accent_Color,
-                cursorColor = Text_Color,
-                unfocusedBorderColor = Text_Color
+                focusedBorderColor = MaterialTheme.colors.secondary,
+                cursorColor = MaterialTheme.colors.onPrimary,
+                unfocusedBorderColor = MaterialTheme.colors.onPrimary
             )
 
         )
@@ -175,8 +175,8 @@ fun Password(password: String, onTextChanged: (String) -> Unit) {
 
     var passwordVisibility by remember { mutableStateOf(false) }
     val selectColors  = TextSelectionColors(
-        handleColor = Accent_Color,
-        backgroundColor = Accent_Color_Transparent
+        handleColor = MaterialTheme.colors.secondary,
+        backgroundColor = MaterialTheme.colors.background
     )
 
     CompositionLocalProvider(LocalTextSelectionColors provides selectColors) {
@@ -186,14 +186,14 @@ fun Password(password: String, onTextChanged: (String) -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 15.dp),
-            label = { Text(text = "Password", color = Text_Color) },
+            label = { Text(text = "Password", color = MaterialTheme.colors.onPrimary) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Accent_Color,
-                cursorColor = Text_Color,
-                unfocusedBorderColor = Text_Color
+                focusedBorderColor = MaterialTheme.colors.secondary,
+                cursorColor = MaterialTheme.colors.onPrimary,
+                unfocusedBorderColor = MaterialTheme.colors.onPrimary
             ),
             trailingIcon = {                    // Change the Icon if Password is visible
                 val image =
@@ -223,10 +223,10 @@ fun LoginButton(loginViewModel: LoginViewModel, loginEnable: Boolean, modifier: 
         shape = RoundedCornerShape(20.dp),
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = Button_enable_color,
-            disabledBackgroundColor = Button_disabled_color,
-            disabledContentColor = Content_Disable,
-            contentColor = Text_Color
+            backgroundColor = MaterialTheme.colors.primary,
+            disabledBackgroundColor = MaterialTheme.colors.primaryVariant,
+            disabledContentColor = MaterialTheme.colors.onBackground,
+            contentColor = MaterialTheme.colors.onPrimary
         )
     ) {
         Text(
@@ -243,7 +243,7 @@ fun ForgotPassword(modifier: Modifier) {
         fontSize = 14.sp,
         modifier = modifier.padding(horizontal = 15.dp),
         textDecoration = TextDecoration.Underline,
-        color = Text_Color
+        color = MaterialTheme.colors.onPrimary
     )
 }
 
@@ -252,11 +252,11 @@ fun Register(modifier: Modifier, navigationController: NavHostController){
     Row(
         modifier = modifier
     ){
-        Text(text = "Don't have a account? ", fontSize = 16.sp, color = Text_Color)
+        Text(text = "Don't have a account? ", fontSize = 16.sp, color = MaterialTheme.colors.onPrimary)
         Text(
             text = "Register",
             fontSize = 16.sp,
-            color = Accent_Color,
+            color = MaterialTheme.colors.secondary,
             modifier = Modifier.clickable { navigationController.navigate(Routes.RegisterScreen.route) })
     }
 }
