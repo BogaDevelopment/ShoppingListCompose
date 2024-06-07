@@ -164,6 +164,7 @@ fun Name(name: String, onTextChanged: (String) -> Unit){
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
+                textColor = MaterialTheme.colors.onPrimary,
                 focusedBorderColor = MaterialTheme.colors.secondary,
                 cursorColor = MaterialTheme.colors.onPrimary,
                 unfocusedBorderColor = MaterialTheme.colors.onPrimary,
@@ -194,6 +195,7 @@ fun LastName(lastName : String, onTextChanged: (String) -> Unit){
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
+                textColor = MaterialTheme.colors.onPrimary,
                 focusedBorderColor = MaterialTheme.colors.secondary,
                 cursorColor = MaterialTheme.colors.onPrimary,
                 unfocusedBorderColor = MaterialTheme.colors.onPrimary
@@ -222,6 +224,7 @@ fun Email(email : String, onTextChanged: (String) -> Unit){
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
+                textColor = MaterialTheme.colors.onPrimary,
                 focusedBorderColor = MaterialTheme.colors.secondary,
                 cursorColor = MaterialTheme.colors.onPrimary,
                 unfocusedBorderColor = MaterialTheme.colors.onPrimary
@@ -250,6 +253,7 @@ fun Password(password: String, onTextChanged: (String) -> Unit ){
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
+                textColor = MaterialTheme.colors.onPrimary,
                 focusedBorderColor = MaterialTheme.colors.secondary,
                 cursorColor = MaterialTheme.colors.onPrimary,
                 unfocusedBorderColor = MaterialTheme.colors.onPrimary
@@ -294,6 +298,7 @@ fun RepeatPassword(password: String, onTextChanged: (String) -> Unit ){
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
+                textColor = MaterialTheme.colors.onPrimary,
                 focusedBorderColor = MaterialTheme.colors.secondary,
                 cursorColor = MaterialTheme.colors.onPrimary,
                 unfocusedBorderColor = MaterialTheme.colors.onPrimary
