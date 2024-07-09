@@ -18,8 +18,7 @@ import com.bogadevelopment.shoppinglist.shoppingCart.ui.ShoppingCartScreen
 import com.bogadevelopment.shoppinglist.ui.theme.ShoppingListTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +39,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 
 
-                    var startDestination = ""
+                    val startDestination : String
 
                     if(FirebaseAuth.getInstance().currentUser?.email.isNullOrEmpty()){
                         startDestination = Routes.LoginScreen.route
