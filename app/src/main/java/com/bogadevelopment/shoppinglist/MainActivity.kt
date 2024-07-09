@@ -17,6 +17,9 @@ import com.bogadevelopment.shoppinglist.register.ui.RegisterViewModel
 import com.bogadevelopment.shoppinglist.shoppingCart.ui.ShoppingCartScreen
 import com.bogadevelopment.shoppinglist.ui.theme.ShoppingListTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +38,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+
+
+                    var startDestination = ""
+
+                    if(FirebaseAuth.getInstance().currentUser?.email.isNullOrEmpty()){
+                        startDestination = Routes.LoginScreen.route
+                    }else{
+                        startDestination =Routes.ShoppingCartScreen.route
+                    }
+
+
                     val navigationController = rememberNavController()
-                    NavHost(navController = navigationController, startDestination = Routes.LoginScreen.route){
+                    NavHost(navController = navigationController, startDestination = startDestination){
                         composable(Routes.LoginScreen.route){ LoginScreen(loginViewModel = LoginViewModel(), navigationController) }
                         composable(Routes.RegisterScreen.route){ RegisterScreen(registerViewModel = RegisterViewModel(),navigationController) }
                         composable(Routes.ShoppingCartScreen.route){ ShoppingCartScreen() }

@@ -123,7 +123,8 @@ fun Body(
                     .fillMaxWidth(0.35f)
                     .fillMaxHeight(0.08f),
                 email,
-                password
+                password,
+                navigationController
             )
             Spacer(modifier = Modifier.size(40.dp))
             Register(modifier = Modifier.align(Alignment.CenterHorizontally), navigationController)
@@ -216,9 +217,9 @@ fun Password(password: String, onTextChanged: (String) -> Unit) {
 }
 
 @Composable
-fun LoginButton(loginViewModel: LoginViewModel, loginEnable: Boolean, modifier: Modifier, email: String, password: String) {
+fun LoginButton(loginViewModel: LoginViewModel, loginEnable: Boolean, modifier: Modifier, email: String, password: String, navigationController: NavHostController) {
     OutlinedButton(
-        onClick = { loginViewModel.signInWithEmailAndPassword(email, password) },
+        onClick = { loginViewModel.signInWithEmailAndPassword(email, password, navigationController) },
         enabled = loginEnable,
         shape = RoundedCornerShape(20.dp),
         modifier = modifier,

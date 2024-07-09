@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavHostController
+import com.bogadevelopment.shoppinglist.Routes
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -38,7 +40,7 @@ class LoginViewModel : ViewModel() {
         Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length >= 8
 
 
-    fun signInWithEmailAndPassword(email: String, password: String) {
+    fun signInWithEmailAndPassword(email: String, password: String, navigationController: NavHostController) {
 
         viewModelScope.launch {
             try {
@@ -46,6 +48,7 @@ class LoginViewModel : ViewModel() {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Log.d("ShoppingList", "Loggeado")
+                            navigationController.navigate(Routes.ShoppingCartScreen.route)
                         } else {
                             Log.d("ShoppingList", "No Loggeado")
                         }
