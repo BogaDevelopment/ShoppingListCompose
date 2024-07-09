@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navigationController, startDestination = startDestination){
                         composable(Routes.LoginScreen.route){ LoginScreen(loginViewModel = LoginViewModel(), navigationController) }
                         composable(Routes.RegisterScreen.route){ RegisterScreen(registerViewModel = RegisterViewModel(),navigationController) }
-                        composable(Routes.ShoppingCartScreen.route){ ShoppingCartScreen() }
+                        composable(Routes.ShoppingCartScreen.route){ ShoppingCartScreen(navigationController) }
                     }
                 }
             }

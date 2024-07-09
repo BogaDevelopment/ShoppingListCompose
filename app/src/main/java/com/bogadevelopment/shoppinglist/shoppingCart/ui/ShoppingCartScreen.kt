@@ -12,13 +12,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.bogadevelopment.shoppinglist.Routes
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ShoppingCartScreen() {
+fun ShoppingCartScreen(navigationController: NavHostController) {
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 
@@ -26,7 +29,7 @@ fun ShoppingCartScreen() {
         content = { Content() },
         topBar = { ToolBar(scope, scaffoldState)},
         scaffoldState = scaffoldState,
-        drawerContent = {Drawer()},
+        drawerContent = {Drawer(navigationController)},
         floatingActionButton = { FAB() },
         floatingActionButtonPosition = FabPosition.End
     )
@@ -34,18 +37,18 @@ fun ShoppingCartScreen() {
 }
 
 @Composable
-fun Drawer(){
-    val menu_items = listOf(
-        ""
-    )
-    Column(){
-        menu_items.forEach{item -> 
-            TextButton(onClick = { /*TODO*/ }) {
-                Text(item,
-                    modifier = Modifier.fillMaxWidth())
-            }
+fun Drawer(navigationController: NavHostController) {
+    Column(modifier = Modifier.fillMaxWidth()){
+        TextButton(onClick = { LogOut(navigationController) }) {
+            Text(text = "Cerrar Sesion")
         }
+        Divider()
     }
+}
+
+fun LogOut(navigationController: NavHostController){
+    FirebaseAuth.getInstance().signOut()
+    navigationController.navigate(Routes.LoginScreen.route)
 }
 
 @Composable
