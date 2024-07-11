@@ -8,12 +8,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.bogadevelopment.shoppinglist.Routes
+import com.bogadevelopment.shoppinglist.dialogs.NewShoppingCartDialog
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -27,9 +28,9 @@ fun ShoppingCartScreen(navigationController: NavHostController) {
 
     Scaffold(
         content = { Content() },
-        topBar = { ToolBar(scope, scaffoldState)},
+        topBar = { ToolBar(scope, scaffoldState) },
         scaffoldState = scaffoldState,
-        drawerContent = {Drawer(navigationController)},
+        drawerContent = { Drawer(navigationController) },
         floatingActionButton = { FAB() },
         floatingActionButtonPosition = FabPosition.End
     )
@@ -38,7 +39,7 @@ fun ShoppingCartScreen(navigationController: NavHostController) {
 
 @Composable
 fun Drawer(navigationController: NavHostController) {
-    Column(modifier = Modifier.fillMaxWidth()){
+    Column(modifier = Modifier.fillMaxWidth()) {
         TextButton(onClick = { LogOut(navigationController) }) {
             Text(text = "Cerrar Sesion")
         }
@@ -46,7 +47,7 @@ fun Drawer(navigationController: NavHostController) {
     }
 }
 
-fun LogOut(navigationController: NavHostController){
+fun LogOut(navigationController: NavHostController) {
     FirebaseAuth.getInstance().signOut()
     navigationController.navigate(Routes.LoginScreen.route)
 }
@@ -65,7 +66,6 @@ fun Content() {
                 )
             )
     ) {
-
     }
 }
 
@@ -77,10 +77,10 @@ fun ToolBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
         },
         navigationIcon = {
             IconButton(onClick = {
-                scope.launch{
+                scope.launch {
                     scaffoldState.drawerState.open()
                 }
-            }){
+            }) {
                 Icon(imageVector = Icons.Filled.Menu, contentDescription = "Menu Icon")
             }
         },
@@ -90,9 +90,13 @@ fun ToolBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
 
 @Composable
 fun FAB() {
+    var showDialog by remember { mutableStateOf(false) }
+
+    NewShoppingCartDialog(show = showDialog, onDismiss = {showDialog = false})
+
     FloatingActionButton(
         modifier = Modifier.size(60.dp),
-        onClick = { /*TODO*/ },
+        onClick = { showDialog = true },
         contentColor = MaterialTheme.colors.onPrimary,
         backgroundColor = MaterialTheme.colors.secondary
     ) {
@@ -102,3 +106,4 @@ fun FAB() {
         )
     }
 }
+
