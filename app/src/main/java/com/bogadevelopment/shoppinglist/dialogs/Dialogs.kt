@@ -38,7 +38,7 @@ fun NewShoppingCartDialog(show: Boolean, onDismiss:() -> Unit) {
             ) {
                 Tittle("New Shopping Cart", 20);
                 CustomTextField("Tittle")
-                Buttons()
+                Buttons({onDismiss()})
             }
         }
     }
@@ -57,14 +57,14 @@ fun Tittle(text: String, fontSize: Int) {
 }
 
 @Composable
-fun CustomButton(text: String, modifier: Modifier) {
-    Button(onClick = { }, modifier = modifier) {
+fun CustomButton(text: String, modifier: Modifier, onClick:() -> Unit) {
+    Button(onClick = {  onClick() }, modifier = modifier) {
         Text(text = text)
     }
 }
 
 @Composable
-fun Buttons(){
+fun Buttons(onCancel:() -> Unit){
     Row (
         Modifier
             .fillMaxWidth()
@@ -73,13 +73,14 @@ fun Buttons(){
             Modifier
                 .fillMaxWidth(0.5f)
                 .padding(start = 5.dp, end = 5.dp)
-        )
+
+        ) { onCancel() }
         Spacer(modifier = Modifier.size(5.dp))
         CustomButton(text = "Add",
             Modifier
                 .fillMaxWidth(1f)
                 .padding(start = 5.dp, end = 5.dp)
-        )
+        ) { /*TODO*/ }
     }
 }
 
