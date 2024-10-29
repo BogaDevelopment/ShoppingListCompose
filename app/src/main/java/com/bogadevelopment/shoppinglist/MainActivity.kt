@@ -15,6 +15,7 @@ import com.bogadevelopment.shoppinglist.login.ui.LoginViewModel
 import com.bogadevelopment.shoppinglist.register.ui.RegisterScreen
 import com.bogadevelopment.shoppinglist.register.ui.RegisterViewModel
 import com.bogadevelopment.shoppinglist.shoppingCart.ui.ShoppingCartScreen
+import com.bogadevelopment.shoppinglist.shoppingList.ui.ShoppingListScreen
 import com.bogadevelopment.shoppinglist.ui.theme.ShoppingListTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.firebase.auth.FirebaseAuth
@@ -53,6 +54,7 @@ class MainActivity : ComponentActivity() {
                         composable(Routes.LoginScreen.route){ LoginScreen(loginViewModel = LoginViewModel(), navigationController) }
                         composable(Routes.RegisterScreen.route){ RegisterScreen(registerViewModel = RegisterViewModel(),navigationController) }
                         composable(Routes.ShoppingCartScreen.route){ ShoppingCartScreen(navigationController) }
+                        composable(Routes.ShoppingListScreen.route){ ShoppingListScreen(navigationController) }
                     }
                 }
             }
